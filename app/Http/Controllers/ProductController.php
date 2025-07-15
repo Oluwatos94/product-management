@@ -38,11 +38,8 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(
-        UpdateProductRequest $request,
-        ProductAction $ProductAction,
-        Product $product,
-    ): JsonResponse {
+    public function update(UpdateProductRequest $request, ProductAction $ProductAction, Product $product,): JsonResponse
+    {
         $updatedProduct = $ProductAction->update($product, $request->validated());
 
         $data = (new ProductAction($this->productRepository, app(JsonFileService::class)))->get();
